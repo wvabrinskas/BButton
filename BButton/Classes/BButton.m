@@ -52,7 +52,6 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
 - (void)setup
 {
     [self setBackgroundColor:[UIColor clearColor]];
-    _shouldShowDisabled = YES;
     _buttonStyle = BButtonStyleBootstrapV3;
     [self setType:BButtonTypeDefault];
 }
@@ -208,37 +207,15 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     if ([newColor bb_isLightColor]) {
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setTitleShadowColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6f] forState:UIControlStateNormal];
-        
-        if(self.shouldShowDisabled)
-            [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
+        [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
     }
     else {
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setTitleShadowColor:[[UIColor blackColor] colorWithAlphaComponent:0.6f] forState:UIControlStateNormal];
-        
-        if(self.shouldShowDisabled)
-            [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
+        [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
     }
     
     [self setNeedsDisplay];
-}
-
-- (void)setShouldShowDisabled:(BOOL)show
-{
-    _shouldShowDisabled = show;
-    
-    if (show) {
-        if([self.color bb_isLightColor])
-            [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
-        else
-            [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
-    }
-    else {
-        if ([self.color bb_isLightColor])
-            [self setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
-        else
-            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    }
 }
 
 #pragma mark - BButton
@@ -431,7 +408,7 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     [roundedRectanglePath addClip];
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    UIColor *topColor = (self.shouldShowDisabled && !self.enabled) ? [self.color bb_darkenColorWithValue:0.12f] : [self.color bb_lightenColorWithValue:0.12f];
+    UIColor *topColor = (!self.enabled) ? [self.color bb_darkenColorWithValue:0.12f] : [self.color bb_lightenColorWithValue:0.12f];
     
     NSArray *newGradientColors = [NSArray arrayWithObjects:(id)topColor.CGColor, (id)self.color.CGColor, nil];
     CGFloat newGradientLocations[] = {0.0f, 1.0f};

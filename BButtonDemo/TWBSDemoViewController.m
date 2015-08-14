@@ -13,9 +13,9 @@
 {
     [super viewDidLoad];
     
-    //    uncomment to set corner radius for all buttons
+    // uncomment to set corner radius for all buttons
     //
-    //    [[BButton appearance] setButtonCornerRadius:@50.0f];
+    // [[BButton appearance] setButtonCornerRadius:@50.0f];
     
     BButtonType type = 0;
     
@@ -45,11 +45,7 @@
             }
             
             [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            
-            //            uncomment to show buttons as disabled
-            //
-            //            btn.shouldShowDisabled = YES;
-            //            btn.enabled = NO;
+            btn.enabled = YES;
             
             [self.view addSubview:btn];
         }

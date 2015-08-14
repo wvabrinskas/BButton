@@ -69,11 +69,6 @@ typedef NS_ENUM(NSUInteger, BButtonType) {
  */
 @property (strong, nonatomic) NSNumber *buttonCornerRadius UI_APPEARANCE_SELECTOR;
 
-/**
- *  A boolean value indicating whether or not the button should be drawn to reflect a disabled state when `enabled` is set to `NO`. The default value is `YES`.
- */
-@property (assign, nonatomic) BOOL shouldShowDisabled;
-
 #pragma mark - Initialization
 
 /**
