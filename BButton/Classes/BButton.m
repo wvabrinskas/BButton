@@ -8,13 +8,15 @@
 //  BButton is licensed under the MIT license
 //  http://opensource.org/licenses/MIT
 //
+//  Documentation
+//  http://cocoadocs.org/docsets/BButton
 //
 //  -----------------------------------------
 //  Edited and refactored by Jesse Squires on 2 April, 2013.
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://hexedbits.com
+//  http://jessesquires.com
 //
 
 #import "BButton.h"

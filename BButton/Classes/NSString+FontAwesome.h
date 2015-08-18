@@ -20,10 +20,12 @@
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://hexedbits.com
+//  http://jessesquires.com
 //
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  A string constant for the Font Awesome font family name.
@@ -715,3 +717,5 @@ typedef NS_ENUM(unsigned short, FAIcon) {
 + (NSString *)fa_stringForFontAwesomeIcon:(FAIcon)icon;
 
 @end
+
+NS_ASSUME_NONNULL_END

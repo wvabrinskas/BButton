@@ -14,7 +14,7 @@
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://hexedbits.com
+//  http://jessesquires.com
 //
 
 #import <XCTest/XCTest.h>
