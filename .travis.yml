@@ -3,8 +3,8 @@ osx_image: xcode6.4
 language: objective-c
 
 before_install: 
-- brew update
-- brew upgrade xctool
+# - brew update
+# - brew upgrade xctool
 
 script: 
 - xctool clean build test -project BButtonDemo.xcodeproj -scheme BButtonDemo -sdk iphonesimulator7.0 ONLY_ACTIVE_ARCH=NO
