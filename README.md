@@ -1,6 +1,6 @@
 # BButton [![Build Status](https://secure.travis-ci.org/jessesquires/BButton.svg)](http://travis-ci.org/jessesquires/BButton) [![Version Status](http://img.shields.io/cocoapods/v/BButton.png)][docsLink] [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)][mitLink]
 
-[Twitter Bootstrap](http://getbootstrap.com) buttons for iOS
+*[Twitter Bootstrap](http://getbootstrap.com) buttons for iOS*
 
 `BButton` is a subclass of `UIButton` that is styled like the Twitter Bootstrap buttons, and is drawn entirely with `CoreGraphics`. Buttons can be styled as Bootstrap [version 2](http://getbootstrap.com/2.3.2/) or [version 3](http://getbootstrap.com).
 
@@ -52,7 +52,7 @@ Forked, refactored, updated, maintained by [@jesse_squires](https://twitter.com/
 
 Many thanks to [the contributors](https://github.com/jessesquires/BButton/graphs/contributors) of this project.
 
-## Apps Using This Control
+## Apps using this library
 
 * [Gitty for GitHub](https://itunes.apple.com/us/app/gitty-for-github/id645696309?mt=8)
 * [Hemoglobe](http://bit.ly/hemoglobeapp)
