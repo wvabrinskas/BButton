@@ -1,4 +1,4 @@
-# BButton [![Build Status](https://secure.travis-ci.org/jessesquires/BButton.svg)](http://travis-ci.org/jessesquires/BButton) [![Version Status](http://img.shields.io/cocoapods/v/BButton.png)][docsLink] [![license MIT](http://img.shields.io/badge/license-MIT-orange.png)][mitLink]
+# BButton [![Build Status](https://secure.travis-ci.org/jessesquires/BButton.svg)](http://travis-ci.org/jessesquires/BButton) [![Version Status](https://img.shields.io/cocoapods/v/BButton.svg)][podLink] [![license MIT](https://img.shields.io/cocoapods/l/BButton.svg)][mitLink] [![Platform](https://img.shields.io/cocoapods/p/BButton.svg)][docsLink]
 
 *[Twitter Bootstrap](http://getbootstrap.com) buttons for iOS*
 
@@ -83,6 +83,7 @@ Many thanks to [the contributors](https://github.com/jessesquires/BButton/graphs
 
 [docsLink]:http://cocoadocs.org/docsets/BButton
 [mitLink]:http://opensource.org/licenses/MIT
+[podLink]:https://cocoapods.org/pods/BButton
 
 [img1]:https://raw.githubusercontent.com/jessesquires/BButton/master/Screenshots/screenshot0.png
 [img2]:https://raw.githubusercontent.com/jessesquires/BButton/master/Screenshots/screenshot1.png
