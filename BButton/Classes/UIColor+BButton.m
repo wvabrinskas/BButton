@@ -14,7 +14,7 @@
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://jessesquires.com
+//  http://hexedbits.com
 //
 
 #import "UIColor+BButton.h"
@@ -111,6 +111,11 @@
 + (UIColor *)bb_grayBButtonColor
 {
     return [UIColor colorWithRed:0.60f green:0.60f blue:0.60f alpha:1.00f];
+}
+
++ (UIColor *)bb_clearBButtonColor {
+    
+    return [UIColor clearColor];
 }
 
 #pragma mark - Utilities

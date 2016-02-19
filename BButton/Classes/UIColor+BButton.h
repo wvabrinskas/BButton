@@ -14,12 +14,10 @@
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://jessesquires.com
+//  http://hexedbits.com
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (BButton)
 
@@ -50,17 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)bb_facebookColor;
 + (UIColor *)bb_purpleBButtonColor;
 + (UIColor *)bb_grayBButtonColor;
++ (UIColor *)bb_clearBButtonColor;
 
 #pragma mark - Utilities
 
 - (UIColor *)bb_desaturatedColorToPercentSaturation:(CGFloat)percent;
-
 - (UIColor *)bb_lightenColorWithValue:(CGFloat)value;
-
 - (UIColor *)bb_darkenColorWithValue:(CGFloat)value;
-
 - (BOOL)bb_isLightColor;
 
 @end
-
-NS_ASSUME_NONNULL_END

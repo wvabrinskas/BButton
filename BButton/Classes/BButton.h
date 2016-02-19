@@ -8,22 +8,18 @@
 //  BButton is licensed under the MIT license
 //  http://opensource.org/licenses/MIT
 //
-//  Documentation
-//  http://cocoadocs.org/docsets/BButton
 //
 //  -----------------------------------------
 //  Edited and refactored by Jesse Squires on 2 April, 2013.
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://jessesquires.com
+//  http://hexedbits.com
 //
 
 #import <UIKit/UIKit.h>
 #import "UIColor+BButton.h"
 #import "NSString+FontAwesome.h"
-
-NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  A constant describing the button style.
@@ -54,27 +50,30 @@ typedef NS_ENUM(NSUInteger, BButtonType) {
     BButtonTypeTwitter,
     BButtonTypeFacebook,
     BButtonTypePurple,
-    BButtonTypeGray
+    BButtonTypeGray,
+    BButtonTypeClear
 };
 
 
 /**
- *  An instanace of `BButton` is a subclass of `UIButton` that is styled like the 
- *  Twitter Bootstrap buttons and is drawn entirely with `CoreGraphics`.
+ *  An instanace of `BButton` is a subclass of `UIButton` that is styled like the Twitter Bootstrap buttons and is drawn entirely with `CoreGraphics`.
  */
 @interface BButton : UIButton <UIAppearance>
 
 /**
- *  The color of the button in its normal state. `BButton` automatically darks this color when the button enters its pressed state. 
- *  The default value is `[UIColor bb_defaultColorV3]`, the color value associated with `BButtonTypeDefault`. @see BButtonType.
+ *  The color of the button in its normal state. `BButton` automatically darks this color when the button enters its pressed state. The default value is `[UIColor bb_defaultColorV3]`, the color value associated with `BButtonTypeDefault`. @see BButtonType.
  */
 @property (strong, nonatomic) UIColor *color;
 
 /**
- *  The corner radius of the button. The default value is 6.0 for buttons initialized with style `BButtonStyleBootstrapV2`, 
- *  or 4.0 for buttons initialized with style `BButtonStyleBootstrapV3`. @see BButtonType.
+ *  The corner radius of the button. The default value is 6.0 for buttons initialized with style `BButtonStyleBootstrapV2`, or 4.0 for buttons initialized with style `BButtonStyleBootstrapV3`. @see BButtonType.
  */
 @property (strong, nonatomic) NSNumber *buttonCornerRadius UI_APPEARANCE_SELECTOR;
+
+/**
+ *  A boolean value indicating whether or not the button should be drawn to reflect a disabled state when `enabled` is set to `NO`. The default value is `YES`.
+ */
+@property (assign, nonatomic) BOOL shouldShowDisabled;
 
 #pragma mark - Initialization
 
@@ -160,8 +159,6 @@ typedef NS_ENUM(NSUInteger, BButtonType) {
                                     color:(UIColor *)color
                                     style:(BButtonStyle)style;
 
-- (id)init NS_UNAVAILABLE;
-
 #pragma mark - BButton
 
 /**
@@ -191,5 +188,3 @@ typedef NS_ENUM(NSUInteger, BButtonType) {
 - (void)addAwesomeIcon:(FAIcon)icon beforeTitle:(BOOL)before;
 
 @end
-
-NS_ASSUME_NONNULL_END

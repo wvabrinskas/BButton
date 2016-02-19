@@ -8,15 +8,13 @@
 //  BButton is licensed under the MIT license
 //  http://opensource.org/licenses/MIT
 //
-//  Documentation
-//  http://cocoadocs.org/docsets/BButton
 //
 //  -----------------------------------------
 //  Edited and refactored by Jesse Squires on 2 April, 2013.
 //
 //  http://github.com/jessesquires/BButton
 //
-//  http://jessesquires.com
+//  http://hexedbits.com
 //
 
 #import "BButton.h"
@@ -54,6 +52,7 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
 - (void)setup
 {
     [self setBackgroundColor:[UIColor clearColor]];
+    _shouldShowDisabled = YES;
     _buttonStyle = BButtonStyleBootstrapV3;
     [self setType:BButtonTypeDefault];
 }
@@ -97,8 +96,6 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
 
 - (instancetype)initWithFrame:(CGRect)frame color:(UIColor *)color style:(BButtonStyle)style
 {
-    NSParameterAssert(color != nil);
-    
     self = [self initWithFrame:frame];
     if (self) {
         _buttonStyle = style;
@@ -209,15 +206,37 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     if ([newColor bb_isLightColor]) {
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self setTitleShadowColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6f] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
+        
+        if(self.shouldShowDisabled)
+            [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
     }
     else {
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setTitleShadowColor:[[UIColor blackColor] colorWithAlphaComponent:0.6f] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
+        
+        if(self.shouldShowDisabled)
+            [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
     }
     
     [self setNeedsDisplay];
+}
+
+- (void)setShouldShowDisabled:(BOOL)show
+{
+    _shouldShowDisabled = show;
+    
+    if (show) {
+        if([self.color bb_isLightColor])
+            [self setTitleColor:[UIColor colorWithWhite:0.4f alpha:0.5f] forState:UIControlStateDisabled];
+        else
+            [self setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateDisabled];
+    }
+    else {
+        if ([self.color bb_isLightColor])
+            [self setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
+        else
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+    }
 }
 
 #pragma mark - BButton
@@ -298,6 +317,9 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
         case BButtonTypeGray:
             return [UIColor bb_grayBButtonColor];
             
+        case BButtonTypeClear:
+            return [UIColor bb_clearBButtonColor];
+            
         case BButtonTypeDefault:
         default:
             return [UIColor bb_defaultColorV2];
@@ -336,6 +358,9 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
             
         case BButtonTypeGray:
             return [UIColor bb_grayBButtonColor];
+            
+        case BButtonTypeClear:
+            return [UIColor bb_clearBButtonColor];
             
         case BButtonTypeDefault:
         default:
@@ -378,11 +403,8 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (!context) {
+    if(!context)
         return;
-    }
-    
-    NSAssert(self.color != nil, @"Error! Attempting to draw button with nil color. %s", __PRETTY_FUNCTION__);
     
     switch (self.buttonStyle) {
         case BButtonStyleBootstrapV2:
@@ -410,7 +432,7 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     [roundedRectanglePath addClip];
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    UIColor *topColor = (!self.enabled) ? [self.color bb_darkenColorWithValue:0.12f] : [self.color bb_lightenColorWithValue:0.12f];
+    UIColor *topColor = (self.shouldShowDisabled && !self.enabled) ? [self.color bb_darkenColorWithValue:0.12f] : [self.color bb_lightenColorWithValue:0.12f];
     
     NSArray *newGradientColors = [NSArray arrayWithObjects:(id)topColor.CGColor, (id)self.color.CGColor, nil];
     CGFloat newGradientLocations[] = {0.0f, 1.0f};
@@ -428,7 +450,7 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     
     CGContextRestoreGState(*context);
     
-    if (!self.highlighted) {
+    if(!self.highlighted) {
         // Rounded Rectangle Inner Shadow
         CGRect roundedRectangleBorderRect = CGRectInset([roundedRectanglePath bounds], -shadowBlurRadius, -shadowBlurRadius);
         roundedRectangleBorderRect = CGRectOffset(roundedRectangleBorderRect, -shadowOffset.width, -shadowOffset.height);
@@ -466,16 +488,14 @@ static CGFloat const kBButtonCornerRadiusV3 = 4.0f;
     CGContextSaveGState(*context);
     
     UIColor *fill = (!self.highlighted) ? self.color : [self.color bb_darkenColorWithValue:0.06f];
-    if (!self.enabled) {
-        fill = [fill bb_desaturatedColorToPercentSaturation:0.60f];
-    }
+    if(!self.enabled)
+        [fill bb_desaturatedColorToPercentSaturation:0.60f];
     
     CGContextSetFillColorWithColor(*context, fill.CGColor);
     
     UIColor *border = (!self.highlighted) ? [self.color bb_darkenColorWithValue:0.06f] : [self.color bb_darkenColorWithValue:0.12f];
-    if (!self.enabled) {
-        border = [border bb_desaturatedColorToPercentSaturation:0.60f];
-    }
+    if(!self.enabled)
+        [border bb_desaturatedColorToPercentSaturation:0.60f];
     
     CGContextSetStrokeColorWithColor(*context, border.CGColor);
     
