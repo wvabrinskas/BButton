@@ -442,7 +442,8 @@ typedef NS_ENUM(unsigned short, FAIcon) {
     FAVimeoSquare = 0xf194,
     FATurkishLira = 0xf195,
     FATry = 0xf195,
-    FAPlusSquareO = 0xf196
+    FAPlusSquareO = 0xf196,
+    FAUserPlus = 0xf234
 };
 
 @interface NSString (FontAwesome)
